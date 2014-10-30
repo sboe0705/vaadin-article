@@ -4,11 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
-	<managed-bean>
-		<managed-bean-name>addressbookBean</managed-bean-name>
-		<managed-bean-class>de.gebit.businessapplication.jsf.AddressbookBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
+    
 	<navigation-rule>
 		<display-name>addressbook.xhtml</display-name>
 		<from-view-id>/addressbook.xhtml</from-view-id>
