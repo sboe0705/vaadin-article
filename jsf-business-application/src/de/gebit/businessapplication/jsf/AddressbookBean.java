@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressbookBean {
-	
-	private List<Address> addresses = new ArrayList<>();
-	
-	private Address newAdress;
-	
-	private String test = "Hallo Welt!";
 
-	public String getTest() {
-		return test;
+	private final List<Address> addresses = new ArrayList<>();
+
+	private Address address = new Address();
+	
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setTest(String test) {
-		this.test = test;
+	public Address getAddress() {
+		return address;
 	}
-	
+
+	public String save() {
+		addresses.add(address);
+		address = new Address();
+		return "";
+	}
+
 }

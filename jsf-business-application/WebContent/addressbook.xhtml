@@ -7,11 +7,58 @@
 
 <head>
 <title>Addressbook</title>
+<h:outputScript library="javax.faces" name="jsf.js" />
 </head>
 
 <h:body>
 	<div id="content">
-		<h:outputText value="Text: #{addressbookBean.test}" />
+
+		<h:form>
+
+			<h:panelGrid columns="2">
+
+				<h:outputLabel for="street" value="Straße" />
+				<h:inputText id="street" value="#{addressbookBean.address.street}" />
+
+				<h:outputLabel for="zipcode" value="PLZ" />
+				<h:inputText id="zipcode" value="#{addressbookBean.address.zipcode}" />
+
+				<h:outputLabel for="city" value="Stadt" />
+				<h:inputText id="city" value="#{addressbookBean.address.city}" />
+
+				<h:outputLabel for="country" value="Land" />
+				<h:inputText id="country" value="#{addressbookBean.address.country}" />
+
+			</h:panelGrid>
+
+			<h:commandButton value="Speichern" action="#{addressbookBean.save}" />
+
+		</h:form>
+
+		<h:dataTable value="#{addressbookBean.addresses}" var="address">
+
+			<h:column>
+				<f:facet name="header">Straße</f:facet>
+				<h:outputText value="#{address.street}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">PLZ</f:facet>
+				<h:outputText value="#{address.zipcode}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Stadt</f:facet>
+				<h:outputText value="#{address.city}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Land</f:facet>
+				<h:outputText value="#{address.country}" />
+			</h:column>
+
+		</h:dataTable>
+
 	</div>
 </h:body>
 
