@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="JSF 2.2 (Mojarra 2.2.0)" systemlibrary="false">
+        <archive path="/jsf-business-application/libraries/JSF 2.2 (Mojarra 2.2.0)/mojarra-2.2.0-FCS/lib/javax.faces.jar"/>
+    </library>
+</eclipse-userlibraries>
