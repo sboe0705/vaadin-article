@@ -10,6 +10,8 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.data.validator.IntegerRangeValidator;
+import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
@@ -39,6 +41,8 @@ public class VaadinBusinessApplicationUI extends UI {
 		TextField streetField = new TextField("Straße");
 		streetField.setNullRepresentation("");
 		TextField zipcodeField = new TextField("PLZ");
+//		zipcodeField.addValidator(new RegexpValidator("\\d{5}", "PLZ ist ungültig"));
+		zipcodeField.addValidator(new ZipcodeValidator());
 		zipcodeField.setNullRepresentation("");
 		TextField cityField = new TextField("Stadt");
 		cityField.setNullRepresentation("");
@@ -62,6 +66,11 @@ public class VaadinBusinessApplicationUI extends UI {
 	}
 
 	public void save() {
+
+		if (!addressFieldGroup.isValid()) {
+			return;
+		}
+
 		try {
 			addressFieldGroup.commit();
 			addressContainer.addBean(addressFieldGroup.getItemDataSource().getBean());
