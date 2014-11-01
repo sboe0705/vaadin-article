@@ -23,6 +23,9 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import de.gebit.businessapplication.model.Address;
+import de.gebit.businessapplication.model.Person;
+
 @SuppressWarnings("serial")
 @Theme("gebit")
 public class VaadinBusinessApplicationUI extends UI {
@@ -32,49 +35,61 @@ public class VaadinBusinessApplicationUI extends UI {
 	public static class Servlet extends VaadinServlet {
 	}
 
-	private BeanFieldGroup<Address> addressFieldGroup = new BeanFieldGroup<>(Address.class);
+	private final BeanFieldGroup<Person> personFieldGroup;
 
-	private BeanItemContainer<Address> addressContainer = new BeanItemContainer<>(Address.class);
+	private final BeanItemContainer<Person> personContainer;
+
+	public VaadinBusinessApplicationUI() {
+		personFieldGroup = new BeanFieldGroup<>(Person.class);
+		personContainer = new BeanItemContainer<>(Person.class);
+		personContainer.addNestedContainerBean("address");
+	}
 
 	@Override
 	protected void init(VaadinRequest request) {
+		TextField firstNameField = new TextField("Vorname");
+		firstNameField.setNullRepresentation("");
+		TextField lastNameField = new TextField("Nachname");
+		lastNameField.setNullRepresentation("");
 		TextField streetField = new TextField("Straﬂe");
 		streetField.setNullRepresentation("");
 		TextField zipcodeField = new TextField("PLZ");
-//		zipcodeField.addValidator(new RegexpValidator("\\d{5}", "PLZ ist ung¸ltig"));
+		// zipcodeField.addValidator(new RegexpValidator("\\d{5}",
+		// "PLZ ist ung¸ltig"));
 		zipcodeField.addValidator(new ZipcodeValidator());
 		zipcodeField.setNullRepresentation("");
 		TextField cityField = new TextField("Stadt");
 		cityField.setNullRepresentation("");
-		TextField countryField = new TextField("Land");
-		countryField.setNullRepresentation("");
 
-		addressFieldGroup.bind(streetField, "street");
-		addressFieldGroup.bind(zipcodeField, "zipcode");
-		addressFieldGroup.bind(cityField, "city");
-		addressFieldGroup.bind(countryField, "country");
-		addressFieldGroup.setItemDataSource(new Address());
+		personFieldGroup.bind(firstNameField, "firstName");
+		personFieldGroup.bind(lastNameField, "lastName");
+		personFieldGroup.bind(streetField, "address.street");
+		personFieldGroup.bind(zipcodeField, "address.zipcode");
+		personFieldGroup.bind(cityField, "address.city");
+		personFieldGroup.setItemDataSource(new Person());
 
-		FormLayout formLayout = new FormLayout(streetField, zipcodeField, cityField, countryField);
+		FormLayout formLayout = new FormLayout(firstNameField, lastNameField, streetField, zipcodeField, cityField);
 
 		Button saveButton = new Button("Speichern", event -> save());
 
 		Table table = new Table();
-		table.setContainerDataSource(addressContainer);
+		table.setContainerDataSource(personContainer);
+		table.setVisibleColumns("firstName", "lastName", "address.street", "address.zipcode", "address.city");
+		table.setColumnHeaders("Vorname", "Nachname", "Straﬂe", "PLZ", "Stadt");
 
 		setContent(new VerticalLayout(formLayout, saveButton, table));
 	}
 
 	public void save() {
 
-		if (!addressFieldGroup.isValid()) {
+		if (!personFieldGroup.isValid()) {
 			return;
 		}
 
 		try {
-			addressFieldGroup.commit();
-			addressContainer.addBean(addressFieldGroup.getItemDataSource().getBean());
-			addressFieldGroup.setItemDataSource(new Address());
+			personFieldGroup.commit();
+			personContainer.addBean(personFieldGroup.getItemDataSource().getBean());
+			personFieldGroup.setItemDataSource(new Person());
 		} catch (CommitException e) {
 			Notification.show(e.getMessage(), Type.ERROR_MESSAGE);
 		}

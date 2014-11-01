@@ -6,25 +6,28 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import de.gebit.businessapplication.model.Address;
+import de.gebit.businessapplication.model.Person;
+
 @ManagedBean(name = "addressbookBean")
 @SessionScoped
 public class AddressbookBean {
 
-	private final List<Address> addresses = new ArrayList<>();
+	private final List<Person> persons = new ArrayList<>();
 
-	private Address address = new Address();
-	
-	public List<Address> getAddresses() {
-		return addresses;
+	private Person person = new Person();
+
+	public Person getPerson() {
+		return person;
 	}
 
-	public Address getAddress() {
-		return address;
+	public List<Person> getPersons() {
+		return persons;
 	}
 
 	public String save() {
-		addresses.add(address);
-		address = new Address();
+		persons.add(person);
+		person = new Person();
 		return "";
 	}
 

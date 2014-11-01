@@ -1,14 +1,12 @@
-package de.gebit.businessapplication.vaadin;
+package de.gebit.businessapplication.model;
 
 public class Address {
-	
+
 	private String street;
-	
+
 	private String zipcode;
-	
+
 	private String city;
-	
-	private String country;
 
 	public String getStreet() {
 		return street;
@@ -25,21 +23,13 @@ public class Address {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	
+
 	public String getCity() {
 		return city;
 	}
-	
+
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 }

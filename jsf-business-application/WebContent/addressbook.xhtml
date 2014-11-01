@@ -17,17 +17,20 @@
 
 			<h:panelGrid columns="2">
 
+				<h:outputLabel for="firstName" value="Vorname" />
+				<h:inputText id="fistName" value="#{addressbookBean.person.firstName}" />
+
+				<h:outputLabel for="lastName" value="Nachname" />
+				<h:inputText id="lastName" value="#{addressbookBean.person.lastName}" />
+
 				<h:outputLabel for="street" value="Straße" />
-				<h:inputText id="street" value="#{addressbookBean.address.street}" />
+				<h:inputText id="street" value="#{addressbookBean.person.address.street}" />
 
 				<h:outputLabel for="zipcode" value="PLZ" />
-				<h:inputText id="zipcode" value="#{addressbookBean.address.zipcode}" />
+				<h:inputText id="zipcode" value="#{addressbookBean.person.address.zipcode}" />
 
 				<h:outputLabel for="city" value="Stadt" />
-				<h:inputText id="city" value="#{addressbookBean.address.city}" />
-
-				<h:outputLabel for="country" value="Land" />
-				<h:inputText id="country" value="#{addressbookBean.address.country}" />
+				<h:inputText id="city" value="#{addressbookBean.person.address.city}" />
 
 			</h:panelGrid>
 
@@ -35,26 +38,31 @@
 
 		</h:form>
 
-		<h:dataTable value="#{addressbookBean.addresses}" var="address">
+		<h:dataTable value="#{addressbookBean.persons}" var="person">
+
+			<h:column>
+				<f:facet name="header">Vorname</f:facet>
+				<h:outputText value="#{person.firstName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nachname</f:facet>
+				<h:outputText value="#{person.lastName}" />
+			</h:column>
 
 			<h:column>
 				<f:facet name="header">Straße</f:facet>
-				<h:outputText value="#{address.street}" />
+				<h:outputText value="#{person.address.street}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">PLZ</f:facet>
-				<h:outputText value="#{address.zipcode}" />
+				<h:outputText value="#{person.address.zipcode}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Stadt</f:facet>
-				<h:outputText value="#{address.city}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Land</f:facet>
-				<h:outputText value="#{address.country}" />
+				<h:outputText value="#{person.address.city}" />
 			</h:column>
 
 		</h:dataTable>
