@@ -77,7 +77,10 @@ public class VaadinBusinessApplicationUI extends UI {
 		table.setVisibleColumns("firstName", "lastName", "address.street", "address.zipcode", "address.city");
 		table.setColumnHeaders("Vorname", "Nachname", "Straße", "PLZ", "Stadt");
 
-		setContent(new VerticalLayout(formLayout, saveButton, table));
+		VerticalLayout content = new VerticalLayout(formLayout, saveButton, table);
+		content.setSpacing(true);
+		content.setMargin(true);
+		setContent(content);
 	}
 
 	public void save() {
