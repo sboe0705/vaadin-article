@@ -51,11 +51,11 @@ public class VaadinBusinessApplicationUI extends UI {
 		firstNameField.setNullRepresentation("");
 		TextField lastNameField = new TextField("Nachname");
 		lastNameField.setNullRepresentation("");
-		TextField streetField = new TextField("Straße");
+		TextField streetField = new TextField("StraÃŸe");
 		streetField.setNullRepresentation("");
 		TextField zipcodeField = new TextField("PLZ");
 		// zipcodeField.addValidator(new RegexpValidator("\\d{5}",
-		// "PLZ ist ungültig"));
+		// "PLZ ist ungï¿½ltig"));
 		zipcodeField.addValidator(new ZipcodeValidator());
 		zipcodeField.setNullRepresentation("");
 		TextField cityField = new TextField("Stadt");
@@ -75,7 +75,7 @@ public class VaadinBusinessApplicationUI extends UI {
 		Table table = new Table();
 		table.setContainerDataSource(personContainer);
 		table.setVisibleColumns("firstName", "lastName", "address.street", "address.zipcode", "address.city");
-		table.setColumnHeaders("Vorname", "Nachname", "Straße", "PLZ", "Stadt");
+		table.setColumnHeaders("Vorname", "Nachname", "StraÃŸe", "PLZ", "Stadt");
 
 		setContent(new VerticalLayout(formLayout, saveButton, table));
 	}
