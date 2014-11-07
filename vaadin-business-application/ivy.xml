@@ -25,7 +25,10 @@
 
 		<!-- Push support -->
 		<dependency org="com.vaadin" name="vaadin-push" rev="&vaadin.version;" />
-
+		
+		<!-- Test Bench -->
+		<dependency org="com.vaadin" name="vaadin-testbench" rev="4.0.0.beta1" />
+		
 		<!-- Servlet 3.0 API -->
 		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.0.1" conf="nodeploy->default" />
 
